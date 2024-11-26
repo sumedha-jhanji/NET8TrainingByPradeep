@@ -1,0 +1,32 @@
+﻿
+@*
+@{
+    ViewData["Title"] = "GetProductInfo";
+}
+
+<h1>GetProductInfo</h1>
+<h4>This is my product</h4>
+@{
+    ProductViewModel product = ViewData["product"] as ProductViewModel;
+}
+<p>Product Details</p>
+<p>Product Id: @product.ProductId</p>
+<p>Product Name: @product.ProductName</p>
+<p>Product Code: @product.ProductCode</p>
+<p>Product Price: @product.ProductPrice</p>
+
+ *@
+
+@model ProductViewModel
+@{
+    ViewData["Title"] = "GetProductInfo";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Product Details</h1>
+    <p>Product Id: @Model.ProductId</p>
+    <p>Product Name: @Model.ProductName</p>
+    <p>Product Code: @Model.ProductCode</p>
+    <p>Product Price: @Model.ProductPrice</p>
+
+</div>

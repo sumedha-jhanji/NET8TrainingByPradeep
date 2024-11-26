@@ -1,0 +1,91 @@
+﻿@model ProductViewModel
+@{
+    ViewData["Title"] = "CreateProduct";
+}
+
+<h1>Create New Product</h1>
+
+@* <form method="post" action="/product/addproduct">
+    <div>
+        <label name="ProductId">Product ID</label>
+        <input type="text" name="ProductId" />
+    </div>
+     <div>
+        <label name="ProductCode">Product Code</label>
+        <input type="text" name="ProductCode" />
+    </div>
+     <div>
+        <label name="ProductName">Product Name</label>
+        <input type="text" name="ProductName" />
+    </div>
+     <div>
+        <label name="ProductPrice">Product Price</label>
+        <input type="text" name="ProductPrice" />
+    </div>
+    <input type="submit" name="saveProduct" value="Save Product"/>
+</form> *@
+
+@* @using (Html.BeginForm("addproduct", "product", FormMethod.Post))
+{
+    <form method="post" action="/product/addproduct">
+        <div class="row">
+            <div class="mb-3">
+                @Html.LabelFor(m => m.ProductId, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.ProductId, new { @class = "form-control" })
+            </div>
+            <div class="mb-3">
+                @Html.LabelFor(m => m.ProductCode, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.ProductCode, new { @class = "form-control" })
+            </div>
+            <div class="mb-3 ">
+                @Html.LabelFor(m => m.ProductName, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.ProductName, new { @class = "form-control" })
+            </div>
+            <div class="mb-3">
+                @Html.LabelFor(m => m.ProductPrice, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.ProductPrice, new { @class = "form-control" })
+            </div>
+            <div class="container flex-container">
+                <button type="submit" class="btn btn-primary" name="saveProduct">Save Product</button>
+            </div>
+            <div>
+
+            </div>
+        </div>
+    </form>
+ } *@
+
+<div class="row">
+    <div class="col-lg-6 col-sm-9">
+        <form method="post" asp-action="addproduct" asp-controller="product">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProductId"></label>
+                <input type="text" asp-for="ProductId" class="form-control" />
+                <span asp-validation-for="ProductId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductCode"></label>
+                <input type="text" asp-for="ProductCode" class="form-control" />
+                <span asp-validation-for="ProductCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductName"></label>
+                <input type="text" asp-for="ProductName" class="form-control" />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductPrice"></label>
+                <input type="text" asp-for="ProductPrice" class="form-control" />
+                <span asp-validation-for="ProductPrice" class="text-danger"></span>
+            </div>
+            <div class="container flex-container">
+                <input type="submit" class="btn btn-primary" value="Save Product" />
+            </div>       
+        </form>
+
+        <example-custom author="Sumedha Jhanji"></example-custom>
+
+        <partial name="_ValidationScriptsPartial" />
+    </div>
+</div>

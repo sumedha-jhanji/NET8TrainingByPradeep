@@ -1,0 +1,19 @@
+﻿@model List<ProductViewModel>
+@{
+    ViewData["Title"] = "ProductCards";
+}
+<div class="row">
+
+@foreach (var item in Model)
+{
+    @Html.Partial("_productCard", item)
+}
+</div>
+
+
+<div class="container flex-container">
+    <a class="btn btn-primary" href="/product/create">Create New Product</a>
+</div>
+
+
+
