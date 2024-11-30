@@ -432,7 +432,7 @@ public string ProductName{get;set;}
   - add properties i.e. columns in table
   - provdie attribute to class [Table("tbltablename", schema="")]
   - use [Key] attribute on property for primary key
-  - [Column(TypeName ="varchar(200)")] -> to provide type to proerty. By default string is nvarchar(max)
+  - [Column(TypeName ="varchar(200)")] -> to provide type to property. By default string is nvarchar(max)
 - In DemoDbcontext, add property -> DbSet<Entity> -> example public DbSet<Product> Product {get;set;}
 - In DemoDbcontext, override OnConfiguring() to define connection string using (Data Source, Initial Catalog, Integrated Security=true) and call UseSqlServer() in it on builder
 
