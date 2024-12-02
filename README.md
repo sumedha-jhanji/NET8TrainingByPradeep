@@ -544,9 +544,13 @@ public string ProductName{get;set;}
 - **Handle transactions using EF**
 - context.database.begintransaction() - in try
 - context.database.comminttransation()  - in try
-- context.database.RollbackTransaction() - in catch 
+- context.database.RollbackTransaction() - in catch
+
+![image](https://github.com/user-attachments/assets/b6dc7c56-e5df-4964-97f1-78ec6f7465ce)
 
 ![image](https://github.com/user-attachments/assets/59ec7dec-536d-4489-9f61-fee4ccfaa872)
+
+![image](https://github.com/user-attachments/assets/49b261f7-ec47-4cc5-acda-c011c18b6f56)
 
 - **Key Points**
 - Repositories entities classes count must be same as count of entities in DAL
