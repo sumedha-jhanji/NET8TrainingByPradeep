@@ -440,10 +440,113 @@ public string ProductName{get;set;}
 - commannd line to execute and generate SQL script
 - execute sql script in DB
     
-## Steps in Migartion
+## Steps in Migration
 - Add Migration <migration name>
 - Update-Database
 - Script-Migration
+
+## Process to follow to Create DB using EF core
+- Open Package Manager console
+  - Set the EF core project as "Set as Startup" project
+  - In package manager console, select the EF core project from drop down
+  - run commannd "Add-Migration <name of migration>":  it will create migration file under Migration folder which is having DB structure.
+  - run "Update-database": it will use connection string and verify if DB exists. If no, it will execute migration script and create DB. It will automaicalliy create "__EFMigrationsHistory" table which consists of tracking of all migrations
+- follow these steps when ever any modification is made to DB objects or new DB objects are created.
+- Say we have created 2 or more migrations before running update-database, Running update-database will execute all the latest created migrations in one go.
+
+## Create Foriegn Key 
+- In class which required foriegn key relation, we need to add **navigation property**
+  - public Category Category { get; set; }  // here Category is Foriegn table entity name
+- also add property which we need as foreign key. Note, it should be with same name as it is defined in foreign table
+  - public int CategoryId { get;set; }
+- if we want to add foreign key property with some other name , then we need add attribute as below to that property
+  - [ForeignKey("Category")] // foreign class name
+  ![image](https://github.com/user-attachments/assets/f3795d49-bbec-482f-95bf-be89cffc277e)
+
+ Product table which needs CategoryId as foreign key from Category table
+  ![image](https://github.com/user-attachments/assets/52337563-8412-476f-9dcb-1a1507a5c669)
+
+  ![image](https://github.com/user-attachments/assets/65964226-336e-4288-b861-76e6bd780b45)
+
+## Key Concepts/points of EF core
+- Using: var products - context.PRoducts.where(condition).ToList() will perform: open connection, generate script, execute query, deserialze to List<Product>, close connection
+
+## Repository pattern
+- design pattern for connection from app to data access layer to have loose coupling  
+- according to Martin Fowler, Repository pattern mediates between domain(model) and data mapping layer(DAL) acting like a in-memory collection of domain Object
+- decouples application from persistant framework like EF, ADO.NET
+- minimize duplicacy of code
+- it will give list of domain objects.
+- we should use Repository pattern on top of EF so that tomorrow, we want to use oracle, then we need to make change to logic layer for consuming that in place of EF. If we have RP, we just need to modify RP to connect to correct DAL
+- allow unit tetsing since we create interface and class
+- ensure that it will always give us class object
+- will hav add, remove, get, getall etc methods
+- **Steps to implement Repository pattern**
+  - add new class library project (like Repositories)
+  - create 2 folders
+    - Abstraction(maintain all interfaces example ICategoryRepository, IProductRepository // we can have generic repository/ base repository also),
+    - Implementation 
+  - Declare required methods in I<Entity>Repository
+  - In implementation folder, create classes that will implement corresponding interfaces
+  ```csharp
+  public class ProductRepository: IProductRepository
+  {
+      private readonly DemoDbcontext _context; // to connect to Database
+      public ProductRepository(){
+          _context = new DemoDbcontext();
+      }
+
+      bool Add(Product productToAdd){
+          _context.Products.Add(productToAdd);
+          var rowsAffected = _context.SaveChanges(); //open connection, generate insert script, execute script, fetch latest id, close connection
+          return (rowsAffected > 0);
+      }
+
+      bool Delete(int productId){
+          //ef doesn't have any method to delete. it has for remove but not delete.
+         // executeDelete - select the record and delete it
+
+         _context.Products.Where(d=> d.productId).ExecuteDelete(); // if no product id, it will return 0
+         var rowsAffected = _context.SaveChanges();
+         return (rowsAffected > 0);
+  
+         // or we can get the product, then check if we have product and then call .Remove()
+      }
+
+      IEnumerable<Product> GetAll(){
+          var products = (from prod in context.PRoducts
+                          where prod.Productid > 0
+                          select prod).AsNoLocking().ToList(); // toList will actually execute the query //.AsNoLocking() - will not lock table
+          return products;
+      }
+
+      bool Update(Product productToAUpdate){
+
+          //one way
+          //_context.Products.Where(condition).ExecuteUpdate(s=> {s.SetProperty(p => p.productCode, productToAUpdate.ProductCode)}); // if we want to update specific properpty
+
+          _context.Entry<Product>(productToAUpdate).State= EntityState.Modified;
+          _context.SaveChanges();
+          return true;
+      }
+  }
+  ```
+- We need to add another layer in between Web app and Repository pattern to convert Domain object to Viewmodel or DTO which will then be referenced by Webapp
+  - create business layer **(BAL)**: add new class library
+
+- **Handle transactions using EF**
+- context.database.begintransaction() - in try
+- context.database.comminttransation()  - in try
+- context.database.RollbackTransaction() - in catch 
+
+![image](https://github.com/user-attachments/assets/59ec7dec-536d-4489-9f61-fee4ccfaa872)
+
+- **Key Points**
+- Repositories entities classes count must be same as count of entities in DAL
+- BL interfaces count can or cannot be equal to repositories classes count
+- To bind data to drop down we need result in **SelectList**, but in case of validating error at server level, it will get empty, so we need to re-bind the drop down
+- for many to many relationship in EF core, we use **onModelCreating()**
+
      
 
         
