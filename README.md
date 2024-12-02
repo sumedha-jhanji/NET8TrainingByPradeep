@@ -288,7 +288,9 @@ public string ProductCode{get;set;}
   ```
 - In _viewImports, add ->  @addTagHelper *, QuestpondTrainingWebApp
 - In cshtml we need to use the custom tag helper using kebab case
-  ```csharp  <<example-custom author="Sumedha Jhanji"></example-custom> ```
+  ```csharp
+  <example-custom author="Sumedha Jhanji"></example-custom>
+  ```
 - If we want to pass data dynamic in tag helper 
   - Define property in custom tag helper class. Property should also be refereneced in cshtml as kebab case
   - In cshtml dynamic data can be passed using kebab case
@@ -301,7 +303,9 @@ public string ProductCode{get;set;}
   
 ## ModelExpression property
 - If we want to use strongly type model, we need to define property of type **ModelExpression**.
-  ```csharp public ModelExpression ProductName{get;set;} ```
+  ```csharp
+  public ModelExpression ProductName{get;set;}
+  ```
 - In **ProcessAsync()** method, use **ModelExpression** as **output.Content.SetHtmlContent($"{ProductName.Model});**
 - In cshtml, use kebab case as "**<my-custom product-name="value"/>**" for ModelExtension property
 - **HTMLAttributeName** can be used for changing property name
@@ -321,7 +325,8 @@ public string ProductCode{get;set;}
         if(ModelState.IsValid){
             //save code
         }
-    }   ```    
+    }
+    ```    
 
 ## Data annotation
 - In model, provide DataAnnotations
