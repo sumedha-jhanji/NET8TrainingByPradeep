@@ -140,9 +140,11 @@
 
 ## Display Labels with custom names
 - Displayname can be used to display custom name on label in case of Strongly types views
-```csharp [DisplayName("Product Code")]
-public string ProductCode{get;set;} ```
-**Note: ** By default the field will be marked as **Required** as it is defined as not nullable
+```csharp
+[DisplayName("Product Code")]
+public string ProductCode{get;set;}
+```
+- **Note: ** By default the field will be marked as **Required** as it is defined as not nullable
 
 ## Bootstrap
 - CSS framework for designing responsive UI.(changing resolution won't stretch the content)
