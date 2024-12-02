@@ -1,0 +1,12 @@
+D:\Study Material\.net core\NET8TrainingByPradeep\WebApp\ViewModels\bin\Debug\net8.0\ViewModels.deps.json
+D:\Study Material\.net core\NET8TrainingByPradeep\WebApp\ViewModels\bin\Debug\net8.0\ViewModels.dll
+D:\Study Material\.net core\NET8TrainingByPradeep\WebApp\ViewModels\bin\Debug\net8.0\ViewModels.pdb
+D:\Study Material\.net core\NET8TrainingByPradeep\WebApp\ViewModels\obj\Debug\net8.0\ViewModels.GeneratedMSBuildEditorConfig.editorconfig
+D:\Study Material\.net core\NET8TrainingByPradeep\WebApp\ViewModels\obj\Debug\net8.0\ViewModels.AssemblyInfoInputs.cache
+D:\Study Material\.net core\NET8TrainingByPradeep\WebApp\ViewModels\obj\Debug\net8.0\ViewModels.AssemblyInfo.cs
+D:\Study Material\.net core\NET8TrainingByPradeep\WebApp\ViewModels\obj\Debug\net8.0\ViewModels.csproj.CoreCompileInputs.cache
+D:\Study Material\.net core\NET8TrainingByPradeep\WebApp\ViewModels\obj\Debug\net8.0\ViewModels.sourcelink.json
+D:\Study Material\.net core\NET8TrainingByPradeep\WebApp\ViewModels\obj\Debug\net8.0\ViewModels.dll
+D:\Study Material\.net core\NET8TrainingByPradeep\WebApp\ViewModels\obj\Debug\net8.0\refint\ViewModels.dll
+D:\Study Material\.net core\NET8TrainingByPradeep\WebApp\ViewModels\obj\Debug\net8.0\ViewModels.pdb
+D:\Study Material\.net core\NET8TrainingByPradeep\WebApp\ViewModels\obj\Debug\net8.0\ref\ViewModels.dll

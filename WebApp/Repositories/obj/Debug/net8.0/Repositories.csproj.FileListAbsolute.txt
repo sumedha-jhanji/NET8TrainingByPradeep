@@ -1,0 +1,16 @@
+D:\Study Material\.net core\NET8TrainingByPradeep\WebApp\Repositories\bin\Debug\net8.0\Repositories.deps.json
+D:\Study Material\.net core\NET8TrainingByPradeep\WebApp\Repositories\bin\Debug\net8.0\Repositories.dll
+D:\Study Material\.net core\NET8TrainingByPradeep\WebApp\Repositories\bin\Debug\net8.0\Repositories.pdb
+D:\Study Material\.net core\NET8TrainingByPradeep\WebApp\Repositories\bin\Debug\net8.0\DataAccessLayer.dll
+D:\Study Material\.net core\NET8TrainingByPradeep\WebApp\Repositories\bin\Debug\net8.0\DataAccessLayer.pdb
+D:\Study Material\.net core\NET8TrainingByPradeep\WebApp\Repositories\obj\Debug\net8.0\Repositories.csproj.AssemblyReference.cache
+D:\Study Material\.net core\NET8TrainingByPradeep\WebApp\Repositories\obj\Debug\net8.0\Repositories.GeneratedMSBuildEditorConfig.editorconfig
+D:\Study Material\.net core\NET8TrainingByPradeep\WebApp\Repositories\obj\Debug\net8.0\Repositories.AssemblyInfoInputs.cache
+D:\Study Material\.net core\NET8TrainingByPradeep\WebApp\Repositories\obj\Debug\net8.0\Repositories.AssemblyInfo.cs
+D:\Study Material\.net core\NET8TrainingByPradeep\WebApp\Repositories\obj\Debug\net8.0\Repositories.csproj.CoreCompileInputs.cache
+D:\Study Material\.net core\NET8TrainingByPradeep\WebApp\Repositories\obj\Debug\net8.0\Repositories.sourcelink.json
+D:\Study Material\.net core\NET8TrainingByPradeep\WebApp\Repositories\obj\Debug\net8.0\Reposito.787EC4B2.Up2Date
+D:\Study Material\.net core\NET8TrainingByPradeep\WebApp\Repositories\obj\Debug\net8.0\Repositories.dll
+D:\Study Material\.net core\NET8TrainingByPradeep\WebApp\Repositories\obj\Debug\net8.0\refint\Repositories.dll
+D:\Study Material\.net core\NET8TrainingByPradeep\WebApp\Repositories\obj\Debug\net8.0\Repositories.pdb
+D:\Study Material\.net core\NET8TrainingByPradeep\WebApp\Repositories\obj\Debug\net8.0\ref\Repositories.dll

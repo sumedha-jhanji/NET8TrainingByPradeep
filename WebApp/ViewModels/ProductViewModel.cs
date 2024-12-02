@@ -1,7 +1,12 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace QuestpondTrainingWebApp.Models
+namespace ViewModels
 {
     public class ProductViewModel
     {
@@ -11,8 +16,8 @@ namespace QuestpondTrainingWebApp.Models
         public int ProductId { get; set; }
 
         [DisplayName("Product Name")]
-        [Required(ErrorMessage ="Product Name is mandatory")]
-        [RegularExpression("^[a-zA-Z0-9 ]+$", ErrorMessage ="Product Name can contain alphabets, digits and space")]
+        [Required(ErrorMessage = "Product Name is mandatory")]
+        [RegularExpression("^[a-zA-Z0-9 ]+$", ErrorMessage = "Product Name can contain alphabets, digits and space")]
         public string ProductName { get; set; }
 
         [DisplayName("Product Code")]
@@ -23,5 +28,9 @@ namespace QuestpondTrainingWebApp.Models
         [Range(0, double.MaxValue)]
         [Required(ErrorMessage = "Product Price is mandatory")]
         public decimal ProductPrice { get; set; }
+
+        [DisplayName("Category")]
+        [Required(ErrorMessage = "Select Category")]
+        public int CategoryId { get; set; }
     }
 }
