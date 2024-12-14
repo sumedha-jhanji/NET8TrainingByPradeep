@@ -558,6 +558,26 @@ public string ProductName{get;set;}
 - To bind data to drop down we need result in **SelectList**, but in case of validating error at server level, it will get empty, so we need to re-bind the drop down
 - for many to many relationship in EF core, we use **onModelCreating()**
 
+# Dependency Injection
+- instead of creating an object in class, it should be injected.
+
+- **Types**
+- Method injection
+- Constructor Injection
+- Property Injection
+
+## IoC Inversion of Control
+- Someone else is going to create an instance for us rather than we create it
+- it creates a container IOC container. It ensures, when it is creating instance of controller class, it will also provide instance of what all else is expected by controller object. It also maintain the life time scope of object
+  -  <ICar, Mercedes>
+- it will register above in memory of IOC container.
+- when we call ICar, it will give new object of Mercedes
+  - <Customer> // without interface, it will also provide new object of Customer
+ 
+## Life time scopes
+- AddTransient
+- AddScoped
+- AddSingleton
      
 
         
