@@ -13,10 +13,10 @@ namespace QuestpondTrainingWebApp.Controllers
         private readonly IProductBL _productBL;
         private readonly ICategoryBL _categoryBL;
 
-        public ProductController()
+        public ProductController(IProductBL productBL, ICategoryBL categoryBL)
         {
-            _productBL = new ProductBL();
-            _categoryBL = new CategoryBL();
+            _productBL = productBL;
+            _categoryBL = categoryBL;
         }
 
         public IActionResult GetProductInfo(int productId)
@@ -53,7 +53,12 @@ namespace QuestpondTrainingWebApp.Controllers
 
             if (ModelState.IsValid)
             {
-                _productBL.AddProduct(productViewModel);
+                if(productViewModel.ProductId > 0)
+                {
+                    _productBL.UpdateProduct(productViewModel);
+                }
+                else
+                    _productBL.AddProduct(productViewModel);
                 return RedirectToAction("Summary", "Product");
                
             }
@@ -77,6 +82,25 @@ namespace QuestpondTrainingWebApp.Controllers
                 return View("productcards", products);
             }
 
+        }
+
+        [HttpGet] // as this is link, so it will redirect and make a direct request. For put, delete, we need to make post call using ajax
+        [Route("delete/{productid}")]
+        public IActionResult DeleteProduct(int productid)
+        {
+            var isDeleted = _productBL.DeleteProduct(productid);
+            return RedirectToAction("Summary", "Product");
+        }
+
+        [HttpGet]
+        [Route("edit/{productid}")]
+        public IActionResult EditProduct(int productid)
+        {
+            var product = _productBL.GetProductById(productid);
+            var categories = new SelectList(_categoryBL.GetActiveCategories(), "CategoryId", "CategoryName");
+            ViewBag.Categories = categories;
+
+            return View("EditProduct", product);
         }
 
         private bool DuplicateProduct(string productName, int productId)

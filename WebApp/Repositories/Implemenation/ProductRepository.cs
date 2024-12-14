@@ -13,9 +13,9 @@ namespace Repositories.Implemenation
     public class ProductRepository : IProductRepository
     {
         private readonly TrainingDbContext _context;
-        public ProductRepository()
+        public ProductRepository(TrainingDbContext trainingDbContext)
         {
-            _context = new TrainingDbContext();
+            _context = trainingDbContext;
         }
 
         public bool Add(Product productToAdd)

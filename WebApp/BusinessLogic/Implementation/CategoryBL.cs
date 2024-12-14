@@ -14,9 +14,9 @@ namespace BusinessLogic.Implementation
     {
         private readonly ICategoryRepository _categoryRepository;
 
-        public CategoryBL()
+        public CategoryBL(ICategoryRepository categoryRepository)
         {
-            _categoryRepository = new CategoryRepository();
+            _categoryRepository = categoryRepository;
         }
 
         public IEnumerable<CategoryViewModel> GetActiveCategories()

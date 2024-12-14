@@ -15,9 +15,9 @@ namespace BusinessLogic.Implementation
     {
         private readonly IProductRepository _productRepo;
 
-        public ProductBL()
+        public ProductBL(IProductRepository productRepository)
         {
-            _productRepo = new ProductRepository();
+            _productRepo = productRepository;
         }
 
         public bool AddProduct(ProductViewModel productVM)
@@ -78,12 +78,14 @@ namespace BusinessLogic.Implementation
 
         public bool UpdateProduct(ProductViewModel productVM)
         {
-            var isUpdated = _productRepo.Add(new DataAccessLayer.Entities.Product
+            var isUpdated = _productRepo.Update(new DataAccessLayer.Entities.Product
             {
+                ProductId = productVM.ProductId,
                 ProductName = productVM.ProductName,
                 ProductCode = productVM.ProductCode,
                 ProductPrice = productVM.ProductPrice,
                 CategoryId = productVM.CategoryId
+
             });
 
             return isUpdated;

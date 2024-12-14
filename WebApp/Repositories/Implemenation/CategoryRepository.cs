@@ -12,9 +12,9 @@ namespace Repositories.Implemenation
     public class CategoryRepository: ICategoryRepository
     {
         private readonly TrainingDbContext _context;
-        public CategoryRepository()
+        public CategoryRepository(TrainingDbContext trainingDbContext)
         {
-            _context = new TrainingDbContext();
+            _context = trainingDbContext;
         }
 
         public IEnumerable<Category> GetAll()
