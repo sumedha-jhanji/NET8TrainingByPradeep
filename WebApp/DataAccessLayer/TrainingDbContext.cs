@@ -10,7 +10,7 @@ namespace DataAccessLayer
 {
     public class TrainingDbContext : DbContext
     {
-        public TrainingDbContext() 
+        public TrainingDbContext() // this is needed so that OnConfiguring can run
         {
 
         }
