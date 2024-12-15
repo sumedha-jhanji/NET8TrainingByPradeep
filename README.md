@@ -556,7 +556,39 @@ public string ProductName{get;set;}
 - Repositories entities classes count must be same as count of entities in DAL
 - BL interfaces count can or cannot be equal to repositories classes count
 - To bind data to drop down we need result in **SelectList**, but in case of validating error at server level, it will get empty, so we need to re-bind the drop down
-- for many to many relationship in EF core, we use **onModelCreating()**
+- for defining relationship in EF core, we use **onModelCreating()**
+
+## DB First Approach (https://learn.microsoft.com/en-us/ef/core/managing-schemas/scaffolding/?tabs=vs)
+- we already have DB, from tat we generate code
+- **Steps - Ist Approach** 
+- Add 2 new packages
+  - EntityFramworkCore.Design
+  - EntityFramworkCore.SqlServer
+- Set the project as start up
+- in pakager manager console
+  - Scaffold-DbContext <ConnectionstringDetails> Microsoft.EntityFrameworkCore.SqlServer -OutputDir <FoldrName where we want to create entities> -Context <contextname>
+- if torun using cli
+  - dotnet ef scaffold <ConnectionstringDetails> Microsoft.EntityFrameworkCore.SqlServer
+- Now code got created, now we add new table in DB, to generate code for that
+  - Scaffold-DbContext <ConnectionstringDetails> Microsoft.EntityFrameworkCore.SqlServer -OutputDir <FoldrName where we want to create entities> -Context <contextname> -Tables <tablename> -DataAnnotations
+- **Note:** by default it is fluent api, -DataAnnotations will be for using data annotations
+
+- **Steps - 2nd Approach**
+ - add extension : "EF Core Power tools"
+ - you will get UI sreen where we can choose things from options or provide names as and when requested
+
+## how to provide thses for production - we need to provide scipts. We cannot provid migrations
+- Make sure DBContext class will have default constructor
+- package Manager console, select database
+  - Script-Migration // it will create actual script for DB for all migrations collectively
+ 
+- if, we need partial script for new created table(s)
+  - Script-Migration -from <MigrationName>
+
+## Data Modelling
+- Data annotations
+- fluent api
+  - all table relations, keye etc ie table creation part and adding default data comes under OnModelCreating
 
 # Dependency Injection
 - instead of creating an object in class, it should be injected.
@@ -567,6 +599,7 @@ public string ProductName{get;set;}
 - Property Injection
 
 ## IoC Inversion of Control
+- Software principle which transfers the control of creating an object to an external source rather than the app.
 - Someone else is going to create an instance for us rather than we create it
 - it creates a container IOC container. It ensures, when it is creating instance of controller class, it will also provide instance of what all else is expected by controller object. It also maintain the life time scope of object
   -  <ICar, Mercedes>
@@ -575,12 +608,61 @@ public string ProductName{get;set;}
   - <Customer> // without interface, it will also provide new object of Customer
  
 ## Life time scopes
-- AddTransient
-- AddScoped
-- AddSingleton
-     
+- AddTransient: everytime a new object is created for each request(single HTTP request) and subsequent request. It is stateless Usage Example - Logging user activity
+- AddScoped: for same and subsequent request(single HTTP request), it will share object. It maintains state. Usage Example - Database
+- AddSingleton: create single instance through out the application, irrespective of HTTP request. Usage Example - Logging
 
-        
+## For Declaring DB Dependencies
+- in extension method of IServiceCollection
+```csharp
+//IConfiguration will fetch all the cofiguration files
+public static void RegisterServices(this IServiceCollection services, IConfiguration configuration) 
+{    
+    services.AddDbContext<TrainingDbContext>(option =>
+    {
+        option.UseSqlServer(configuration.GetConnectionString("conn") ?? "");
+    });
+}
+```
+
+- in qappsettings.json
+```csharp
+ "ConnectionStrings": {
+   "conn": "connection string details like Dasta Source, Initial Catalog, Trust Server Certificate, Integrated Security"
+ }
+```
+
+- in progra.cs
+```csharp
+builder.Services.RegisterServices(builder.Configuration);
+```
+
+## To pass custom data to constructor while using DI
+```csharp
+services.AddScoped<ICategoryBL, CategoryBL>(provider =>
+{
+   var catRepo = provider.GetService<CategoryRepository>();
+   return new CategoryBL(catRepo, "custom data");
+});
+
+public CategoryBL(ICategoryRepository categoryRepository, string data)
+{
+    _categoryRepository = categoryRepository;
+}
+```
+
+## GetService VS GetRequiredService
+- **GetService**
+- is used to retrieve a service from the dependency injection container.
+- If the requested service is not found, it returns null instead of throwing an exception
+- Suitable when the service is optional, and you can handle the case where the service is not registered
+   **GetRequriedService**
+- is used to retrieve a service from the dependency injection container.
+- If the requested service is not found, it throws InvalidOperationException
+- Suitable when the service is essential for the application, and the absence of the service should be considered an error.
+
+
+
 
         
 
