@@ -10,9 +10,19 @@ namespace DataAccessLayer
 {
     public class TrainingDbContext : DbContext
     {
+        public TrainingDbContext() 
+        {
+
+        }
+
+        public TrainingDbContext(DbContextOptions option): base(option)
+        {
+
+        }
         //for configuring connection string
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            //since we have passed it from dependencies so it will not get called
             if (!optionsBuilder.IsConfigured) { 
                 string connectionString = "Data Source=LAPTOP-VA38D82T;Initial Catalog=aspnetcoretraining;Integrated Security=true;Trust Server Certificate=true";
                 optionsBuilder.UseSqlServer(connectionString);

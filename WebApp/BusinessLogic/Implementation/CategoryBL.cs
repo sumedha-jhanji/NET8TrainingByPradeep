@@ -13,8 +13,7 @@ namespace BusinessLogic.Implementation
     public class CategoryBL : ICategoryBL
     {
         private readonly ICategoryRepository _categoryRepository;
-
-        public CategoryBL(ICategoryRepository categoryRepository)
+        public CategoryBL(ICategoryRepository categoryRepository, string data)
         {
             _categoryRepository = categoryRepository;
         }

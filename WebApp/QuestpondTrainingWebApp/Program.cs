@@ -3,8 +3,8 @@ using BusinessLogic;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.RegisterServices();
 builder.Services.AddControllersWithViews();
+builder.Services.RegisterServices(builder.Configuration);
 
 var app = builder.Build();
 

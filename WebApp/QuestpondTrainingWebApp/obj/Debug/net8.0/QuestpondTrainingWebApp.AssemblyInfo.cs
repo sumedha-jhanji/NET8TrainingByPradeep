@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("QuestpondTrainingWebApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fbb13b84860b09af8a1381958edc39b57851c031")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+27a97ee360c90b98f71eb42e25dfb384a6756d49")]
 [assembly: System.Reflection.AssemblyProductAttribute("QuestpondTrainingWebApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("QuestpondTrainingWebApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
